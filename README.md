@@ -1,11 +1,11 @@
 # Desarrollo de aplicaciones Multiplataforma. Especialización IoT. FIUBA
 
 # Clase 01
-   Single Page Application
-   Angular
-    Módulos
-    Componentes
-    Bindings
+    Single Page Application
+    Angular
+      Módulos
+      Componentes
+      Bindings
 
 # Clase 02
     Angular
