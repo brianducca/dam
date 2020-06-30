@@ -1,0 +1,16 @@
+import { ComponentFactoryResolver, Injector } from '@angular/core';
+import { PopoverOptions } from '@ionic/core';
+import { OverlayBaseController } from '../util/overlay';
+import { AngularDelegate } from './angular-delegate';
+import * as ɵngcc0 from '@angular/core';
+export declare class PopoverController extends OverlayBaseController<PopoverOptions, HTMLIonPopoverElement> {
+    private angularDelegate;
+    private resolver;
+    private injector;
+    constructor(angularDelegate: AngularDelegate, resolver: ComponentFactoryResolver, injector: Injector);
+    create(opts: PopoverOptions): Promise<HTMLIonPopoverElement>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<PopoverController, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<PopoverController>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicG9wb3Zlci1jb250cm9sbGVyLmQudHMiLCJzb3VyY2VzIjpbInBvcG92ZXItY29udHJvbGxlci5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBOztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7O0FBQ0EiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnRGYWN0b3J5UmVzb2x2ZXIsIEluamVjdG9yIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBQb3BvdmVyT3B0aW9ucyB9IGZyb20gJ0Bpb25pYy9jb3JlJztcbmltcG9ydCB7IE92ZXJsYXlCYXNlQ29udHJvbGxlciB9IGZyb20gJy4uL3V0aWwvb3ZlcmxheSc7XG5pbXBvcnQgeyBBbmd1bGFyRGVsZWdhdGUgfSBmcm9tICcuL2FuZ3VsYXItZGVsZWdhdGUnO1xuZXhwb3J0IGRlY2xhcmUgY2xhc3MgUG9wb3ZlckNvbnRyb2xsZXIgZXh0ZW5kcyBPdmVybGF5QmFzZUNvbnRyb2xsZXI8UG9wb3Zlck9wdGlvbnMsIEhUTUxJb25Qb3BvdmVyRWxlbWVudD4ge1xuICAgIHByaXZhdGUgYW5ndWxhckRlbGVnYXRlO1xuICAgIHByaXZhdGUgcmVzb2x2ZXI7XG4gICAgcHJpdmF0ZSBpbmplY3RvcjtcbiAgICBjb25zdHJ1Y3Rvcihhbmd1bGFyRGVsZWdhdGU6IEFuZ3VsYXJEZWxlZ2F0ZSwgcmVzb2x2ZXI6IENvbXBvbmVudEZhY3RvcnlSZXNvbHZlciwgaW5qZWN0b3I6IEluamVjdG9yKTtcbiAgICBjcmVhdGUob3B0czogUG9wb3Zlck9wdGlvbnMpOiBQcm9taXNlPEhUTUxJb25Qb3BvdmVyRWxlbWVudD47XG59XG4iXX0=

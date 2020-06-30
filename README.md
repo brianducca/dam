@@ -19,6 +19,7 @@
 
 # Clase 03
     Comunicación entre componentes
+    Ciclo de vida Angular
     App Híbridas vs Nativas
     Ionic
     Ciclo de vida ionic
