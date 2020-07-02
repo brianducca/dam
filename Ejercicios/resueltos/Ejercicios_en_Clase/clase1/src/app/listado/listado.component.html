@@ -1,0 +1,9 @@
+<div>
+    <h1>{{nombre}} <u>{{apellido}}</u></h1>
+
+    <input [(ngModel)]="nombre" />
+    <br>
+    <input [(ngModel)]="apellido" [disabled]="!estaHabilitado" />
+</div>
+<button [disabled]="!estaHabilitado" (click)="logConsola()">{{textoBtn}}</button>
+<button (click)="cambiar()">Deshabilitar Botón</button>
