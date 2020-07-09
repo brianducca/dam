@@ -1,0 +1,6 @@
+ /**Comunicaciones con input y outputs ***/
+<br>
+<div *ngFor="let e of miArray">
+    <dispositivo [dispositivo]="e" (onChange)="manejarCambios($event)"></dispositivo>
+    <!-- <p appDirectivaAttr>Elemento del array {{e}}</p> -->
+</div>
