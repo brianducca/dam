@@ -1,0 +1,22 @@
+<form [formGroup]="formDispositivo" (ngSubmit)="guardarDispositivo()">
+    <div>
+        <label>Nombre</label>
+        <input formControlName="nombre" name="nombre" />
+    </div>
+    <div class="error" *ngIf="formDispositivo.controls.nombre.invalid && formDispositivo.controls.nombre.touched">
+        El nombre es inválido. Yo espero algo como Nombre, Apellido
+    </div>
+    <div>
+        <label>Ubicacion</label>
+        <input formControlName="ubicacion" name="ubicacion" />
+    </div>
+    <div class="error" *ngIf="formDispositivo.controls.ubicacion.invalid && formDispositivo.controls.ubicacion.touched">
+        La ubicación es inválida.
+    </div>
+    <div>
+        <label>Email</label>
+        <input formControlName="email" name="email" />
+    </div>
+
+    <button type="submit" [disabled]="formDispositivo.invalid">Guardar</button>
+</form>

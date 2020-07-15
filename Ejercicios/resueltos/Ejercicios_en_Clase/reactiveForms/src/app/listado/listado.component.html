@@ -1,0 +1,27 @@
+<!-- <div>
+    <h1>{{nombre | uppercase }} <u>{{apellido | lowercase}}</u></h1>
+
+    <h2 *ngIf="estaHabilitado">{{ 2 | nombrePipe:10 }}</h2>
+
+
+    <input [(ngModel)]="nombre" />
+    <br>
+    <input [(ngModel)]="apellido" [disabled]="!estaHabilitado" />
+</div> -->
+
+
+<!-- <p appDirectivaAttr>Elemento del array {{e}}</p> -->
+
+
+<div *ngFor="let e of miArray">
+    <app-dispositivo [atributoDisp]="e" (evento)="manejarCambio($event)"></app-dispositivo>
+</div>
+
+
+
+
+
+<!-- 
+
+<button [disabled]="!estaHabilitado" (click)="logConsola()">{{textoBtn}}</button>
+<button (click)="cambiar()">Deshabilitar Botón</button> -->
