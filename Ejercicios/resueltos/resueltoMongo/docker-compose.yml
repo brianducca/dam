@@ -1,0 +1,71 @@
+version: '3'
+services:
+ mongo:
+   image:                              mongo
+   hostname:                           mongo
+   container_name:                     mongo
+   restart:                            always
+   environment:
+     MONGO_INITDB_ROOT_USERNAME:       root
+     MONGO_INITDB_ROOT_PASSWORD:       rootPass
+     MONGO_INITDB_DATABASE:            DAM
+   volumes:   
+   -                                   mongodbData:/data/db
+   networks:   
+   -                                   mongo-net
+   ports:
+   -                                   "27017:27017" 
+ nodeapp:
+   image:                              abassi/nodejs-server:10.0-dev
+   hostname:                           nodeapp
+   container_name:                     nodeapp
+   restart:                            always
+   environment:
+     MONGO_HOSTNAME:                   mongo
+     MONGO_PORT:                       27017
+     MONGO_USERNAME:                   root
+     MONGO_PASSWORD:                   rootPass
+   volumes:
+     -                                 ./src:/home/node/app/src
+   networks:
+     -                                 mongo-net
+   depends_on:
+     -                                 mongo
+   ports:
+     -                                 "8080:8000"
+   command:                            nodemon src/index.js
+
+ mongoexpress-admin:
+   image:                              mongo-express
+   hostname:                           mongoexpress-admin
+   container_name:                     mongoexpress-admin
+   restart:                            always
+   environment:
+     ME_CONFIG_MONGODB_ADMINUSERNAME:  root
+     ME_CONFIG_MONGODB_ADMINPASSWORD:  rootPass
+   networks:
+     -                                 mongo-net
+   depends_on:
+     -                                 mongo
+   ports:
+     -                                 "8081:8081"
+
+ mongo_seed:
+   container_name: mongo_import
+   image: mongo
+   links:
+        - mongo
+   volumes:
+        - ./mongo-seed:/mongo-seed
+   command:
+        /mongo-seed/import.sh
+   networks:
+        -                                 mongo-net
+
+networks:
+ mongo-net:
+   driver:                             bridge
+
+volumes:
+ mongodbData:
+   external: false
