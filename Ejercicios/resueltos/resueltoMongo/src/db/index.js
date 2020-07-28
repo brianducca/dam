@@ -1,6 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var nombreBD = "DAM";
+var mongoConection = { db: "", objectId: "" };
 
 // App settings from ENV VARS
 const {
