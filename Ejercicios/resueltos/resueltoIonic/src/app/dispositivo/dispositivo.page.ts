@@ -14,12 +14,13 @@ export class DispositivoPage implements OnInit {
   constructor(private router:ActivatedRoute, private dServ:DispositivoService) { }
 
   ngOnInit() {
-  }
-
-  ionViewWillEnter(){
     let idDispositivo = this.router.snapshot.paramMap.get('id');
     this.dispositivo = this.dServ.getDispositivo(idDispositivo);
     console.log(this.dispositivo);
+  }
+
+  ionViewWillEnter(){
+    
   }
 
 
