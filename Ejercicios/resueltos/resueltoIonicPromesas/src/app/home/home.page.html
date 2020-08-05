@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Blank
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">Blank</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-list>
+        <ion-item *ngFor="let dispositivo of this.listadoDispositivo" routerLink="/dispositivo/{{dispositivo.dispositivoId}}" routerDirection="root">
+            <ion-avatar slot="start">
+                <ion-icon size="large" name="thermometer"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+                <h2>Sensor {{dispositivo.dispositivoId}} - {{dispositivo.nombre}}</h2>
+                <h3>
+                    <ion-icon name="pin"></ion-icon> {{dispositivo.ubicacion}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

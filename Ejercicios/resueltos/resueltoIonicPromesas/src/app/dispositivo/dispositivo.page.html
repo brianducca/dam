@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button routerLink="/">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Dispositivo - {{this.idDispositivo}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="this.medicion !=null">Medida del sensor: {{this.medicion.valor}}</div>
+</ion-content>

@@ -1,0 +1,179 @@
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <title>Ionic Lab</title> <base target="_blank"> <script src="/build/app.js"></script> <link rel="icon" type="image/png" href="/assets/favicon.png"> <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> <style>:root {
+  --font-family-sans-serif: 'AvenirNextLTPro-Regular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+  --font-family-base: var(--font-family-sans-serif);
+  --font-family-medium: 'AvenirNextLTPro-Medium', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+
+  --font-size-base: 1rem;
+  --font-size-lg: calc(var(--font-size-base) * 1.25);
+  --font-size-sm: calc(var(--font-size-base) * .875);
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --font-weight-base: var(--font-weight-normal);
+  --line-height-base: 1.5;
+
+  --body-bg: #242a31;
+  --body-color: #fff;
+
+  --headings-margin-bottom: 1rem;
+  --paragraph-margin-bottom: 1rem;
+
+  --link-color: #00f;
+  --link-decoration: none;
+  /*
+  --link-hover-color: darken($link-color, 15%);
+  */
+  --link-hover-color: var(--link-color);
+  --link-hover-decoration: underline;
+
+  --icon-color: #858d9b;
+  --main-bg: var(--body-bg);
+  --section-bg: #151a21;
+  --font-color: #a2a9b4;
+
+  --frame-ratio: .562; /* width/height */
+  --frame-default-width: 375px;
+  --frame-default-height: calc(var(--frame-default-width) / var(--frame-ratio));
+}</style> <style>@font-face {font-family: 'AvenirNextLTPro-Regular';src: url('https://code.ionicframework.com/assets/fonts/28882F_0_0.eot');src: url('https://code.ionicframework.com/assets/fonts/28882F_0_0.eot?#iefix') format('embedded-opentype'),url('https://code.ionicframework.com/assets/fonts/28882F_0_0.woff') format('woff'),url('https://code.ionicframework.com/assets/fonts/28882F_0_0.ttf') format('truetype');}
+@font-face {font-family: 'AvenirNextLTPro-Medium';src: url('https://code.ionicframework.com/assets/fonts/28882F_1_0.eot');src: url('https://code.ionicframework.com/assets/fonts/28882F_1_0.eot?#iefix') format('embedded-opentype'),url('https://code.ionicframework.com/assets/fonts/28882F_1_0.woff') format('woff'),url('https://code.ionicframework.com/assets/fonts/28882F_1_0.ttf') format('truetype');}
+@font-face {font-family: 'AvenirNextLTPro-UltLt';src: url('https://code.ionicframework.com/assets/fonts/29CC36_0_0.eot');src: url('https://code.ionicframework.com/assets/fonts/29CC36_0_0.eot?#iefix') format('embedded-opentype'),url('https://code.ionicframework.com/assets/fonts/29CC36_0_0.woff') format('woff'),url('https://code.ionicframework.com/assets/fonts/29CC36_0_0.ttf') format('truetype');}</style> <link rel="stylesheet" href="/assets/reboot.css"> <style>html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+a {
+  color: var(--font-color);
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--font-color);
+}
+
+ionlab-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  background: var(--section-bg);
+  height: 50px;
+  line-height: 50px;
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  color: var(--icon-color);
+}
+
+header .icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -3px;
+  font-size: 22px;
+  color: var(--icon-color);
+  cursor: pointer;
+}
+
+#logo {
+  display: inline-block;
+  vertical-align: middle;
+  background: url('lab-logo.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-top: -2px;
+  width: 64px;
+  height: 28px;
+  margin-left: 15px;
+}
+
+#header-left {
+  float: left;
+}
+
+#header-left .menu-icon {
+  margin-left: 13px;
+}
+
+#header-right {
+  float: right;
+}
+
+#header-right button {
+  display: inline-block;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0 10px;
+  cursor: pointer;
+  color: var(--icon-color);
+  font-weight: bold;
+}
+
+#header-right .fullscreen-icon {
+  margin-left: 5px;
+}
+
+main {
+  color: var(--font-color);
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+footer {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: var(--section-bg);
+  font-size: var(--font-size-sm);
+  color: var(--font-color);
+}
+
+#footer-left {
+  float: left;
+  padding: 14px 0 14px 15px;
+}
+
+#footer-right {
+  float: right;
+  padding: 14px 15px 14px 5px;
+}
+
+#footer-right a {
+  font-family: var(--font-family-medium);
+  margin-left: 10px;
+}
+
+#error-box {
+  width: 500px;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--section-bg);
+  padding: 25px;
+  margin: 100px 0;
+}</style> </head> <body> <ionlab-app></ionlab-app> <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-44023830-9', {
+      'cookieDomain': 'none'
+    })
+    ga('send', 'pageview');</script> </body></html>

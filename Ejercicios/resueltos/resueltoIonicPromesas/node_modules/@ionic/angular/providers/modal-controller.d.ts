@@ -1,0 +1,16 @@
+import { ComponentFactoryResolver, Injector } from '@angular/core';
+import { ModalOptions } from '@ionic/core';
+import { OverlayBaseController } from '../util/overlay';
+import { AngularDelegate } from './angular-delegate';
+import * as ɵngcc0 from '@angular/core';
+export declare class ModalController extends OverlayBaseController<ModalOptions, HTMLIonModalElement> {
+    private angularDelegate;
+    private resolver;
+    private injector;
+    constructor(angularDelegate: AngularDelegate, resolver: ComponentFactoryResolver, injector: Injector);
+    create(opts: ModalOptions): Promise<HTMLIonModalElement>;
+    static ɵfac: ɵngcc0.ɵɵFactoryDef<ModalController, never>;
+    static ɵprov: ɵngcc0.ɵɵInjectableDef<ModalController>;
+}
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibW9kYWwtY29udHJvbGxlci5kLnRzIiwic291cmNlcyI6WyJtb2RhbC1jb250cm9sbGVyLmQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOzs7QUFDQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudEZhY3RvcnlSZXNvbHZlciwgSW5qZWN0b3IgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IE1vZGFsT3B0aW9ucyB9IGZyb20gJ0Bpb25pYy9jb3JlJztcbmltcG9ydCB7IE92ZXJsYXlCYXNlQ29udHJvbGxlciB9IGZyb20gJy4uL3V0aWwvb3ZlcmxheSc7XG5pbXBvcnQgeyBBbmd1bGFyRGVsZWdhdGUgfSBmcm9tICcuL2FuZ3VsYXItZGVsZWdhdGUnO1xuZXhwb3J0IGRlY2xhcmUgY2xhc3MgTW9kYWxDb250cm9sbGVyIGV4dGVuZHMgT3ZlcmxheUJhc2VDb250cm9sbGVyPE1vZGFsT3B0aW9ucywgSFRNTElvbk1vZGFsRWxlbWVudD4ge1xuICAgIHByaXZhdGUgYW5ndWxhckRlbGVnYXRlO1xuICAgIHByaXZhdGUgcmVzb2x2ZXI7XG4gICAgcHJpdmF0ZSBpbmplY3RvcjtcbiAgICBjb25zdHJ1Y3Rvcihhbmd1bGFyRGVsZWdhdGU6IEFuZ3VsYXJEZWxlZ2F0ZSwgcmVzb2x2ZXI6IENvbXBvbmVudEZhY3RvcnlSZXNvbHZlciwgaW5qZWN0b3I6IEluamVjdG9yKTtcbiAgICBjcmVhdGUob3B0czogTW9kYWxPcHRpb25zKTogUHJvbWlzZTxIVE1MSW9uTW9kYWxFbGVtZW50Pjtcbn1cbiJdfQ==
