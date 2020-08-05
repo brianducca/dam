@@ -27,12 +27,21 @@ export class DispositivoPage implements OnInit {
       console.log(med)
     });
 
-   //6
-    let a : Medicion= new Medicion(99,moment().format("YYYY-MM-DD hh:mm:ss"),99,1);
+    //6
+    //opción 1- utilizar libreria Momentjs , haciendo npm install --save moment y luego el import * as moment from 'moment'; en donde lo necesitemos.
+    // let a : Medicion= new Medicion(99,moment().format("YYYY-MM-DD hh:mm:ss"),99,1);
+
+    //opción 2, utilizar el objeto Date y hacer el formato necesario a mano.
+    let current_datetime = new Date()
+    let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds() 
+    let a : Medicion= new Medicion(99,formatted_date,99,1);
+   
     this.mServ.agregarMedicion(a).then((med)=>{
       console.log(med)
     });
+    
   }
+
 
 
 
