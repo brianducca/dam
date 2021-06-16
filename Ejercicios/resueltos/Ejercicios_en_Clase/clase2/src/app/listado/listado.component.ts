@@ -10,7 +10,7 @@ export class ListadoComponent implements OnInit {
 
   nombre:string="Jose";
   apellido:string="Perez";
-  textoBtn:string="Aceptr"
+  textoBtn:string="Aceptar"
   estaHabilitado:boolean=true;
 
   miArray=[1,2,3,4,5,6];
