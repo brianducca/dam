@@ -65,7 +65,7 @@ routerUsuario.get('/10', function(req, res) {
 //10
 routerUsuario.put('/actualizar', function(req, res) {
     console.log(mongo.db);
-    mongo.db.collection("Usuarios").update({ _id: mongo.objectId('5f19513a918d509af3823df6') }, { $set: { nombre: "nuevoNombre" } }, function(err, docs) {
+    mongo.db.collection("Usuarios").update({ _id: mongo.objectId('5f342aa2c3e20036c7a6d75e') }, { $set: { nombre: "nuevoNombre" } }, function(err, docs) {
         if (err) {
             res.send(err).status(400);
             return;

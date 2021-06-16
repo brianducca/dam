@@ -9,7 +9,7 @@ export class ListadoComponent implements OnInit {
 
   nombre:string="Jose";
   apellido:string="Perez";
-  textoBtn:string="Aceptr"
+  textoBtn:string="Aceptar"
   estaHabilitado:boolean=true;
 
 
