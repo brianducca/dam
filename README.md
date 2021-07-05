@@ -15,37 +15,38 @@
         *ngIf
         *ngFor
         *ngSwitch
-      Reactive Forms
-
+      
 # Clase 03
+    Reactive Forms
     Comunicación entre componentes
     Ciclo de vida Angular
+
+# Clase 04
     App Híbridas vs Nativas
     Ionic
     Ciclo de vida ionic
     Ionic Native
-
-# Clase 04
+    
+# Clase 05
     Web Api vs Web Service
     Rest vs SOAP
     Express - Middleware
     CORS
     MySql Pool
- 
-# Clase 05
+    
+# Clase 06
+    Interceptors
+    Guard
+    Router
+
+# Clase 07
     Services con HTTP
     Observables
     Promesas
     Async-Await
-
-# Clase 06
-    NoSQL
-    ACID vs BASE
-    Teorema CAP
-    Mongo DB
-    
-# Clase 07
-    Repaso y realización de Ejercicios
     
 # Clase 08
     Realización y entrega de TP final
+
+
+> **Nota:** Los ejercicios resueltos y los de la clase se encuentran sin la carpeta node_modules, por lo tanto si desean correr alguno de ellos se deberán parar en la carpeta y ejecutar el comando **npm install**
