@@ -8,7 +8,7 @@ import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 })
 export class FormListadoComponent implements OnInit {
 
-  public formDispositivo:FormGroup;
+  public formDispositivo:FormGroup=new FormGroup({});;
 
   constructor(private fBuilder:FormBuilder) { }
 
@@ -28,9 +28,9 @@ export class FormListadoComponent implements OnInit {
 
   guardarDispositivo(){
     console.log("Submit");
-    console.log(this.formDispositivo.get("nombre").value);
-    console.log(this.formDispositivo.get("ubicacion").value);
-    console.log(this.formDispositivo.get("email").value);
+    console.log(this.formDispositivo.get("nombre")?.value);
+    console.log(this.formDispositivo.get("ubicacion")?.value);
+    console.log(this.formDispositivo.get("email")?.value);
     
   }
 
