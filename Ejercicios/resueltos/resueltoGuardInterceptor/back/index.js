@@ -49,16 +49,16 @@ app.get("/api/test", function(req, res) {
     if (token) {
         jwt.verify(token, JWT_Secret, function(err) {
             if (err) {
+                console.log("Alguien cambio el token, no es valido");
                 return res.json({ message: 'Invalid Token' });
             } else {
                 console.log("Validado el token y todo ok");
+                res.json("test");
             }
         });
     } else {
         return res.send({ message: 'No token' });
     }
-
-    res.json("test");
 });
 
 
