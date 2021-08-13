@@ -38,8 +38,27 @@ app.post('/api/authenticate', (req, res) => {
 });
 
 app.get("/api/test", function(req, res) {
-    console.log("Test desde el back , llegan en los headers " + JSON.stringify(req.headers));
-    res.send("test");
+    let authHeader = (req.headers.authorization || '');
+    if (authHeader.startsWith("Bearer ")) {
+        token = authHeader.substring(7, authHeader.length);
+    } else {
+        return res.send({ message: 'No Auth' });
+    }
+    console.log("Test desde el backend, llega en el header " + JSON.stringify(authHeader));
+
+    if (token) {
+        jwt.verify(token, JWT_Secret, function(err) {
+            if (err) {
+                return res.json({ message: 'Invalid Token' });
+            } else {
+                console.log("Validado el token y todo ok");
+            }
+        });
+    } else {
+        return res.send({ message: 'No token' });
+    }
+
+    res.json("test");
 });
 
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {  HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
  
 
@@ -16,11 +16,8 @@ export class LoginService {
     let response = await this.http.post<any>(this.uri + '/authenticate', {username: username,password: password}).toPromise();
     if (response!=null){
       this.router.navigate(['home']);
-      console.log(response)
       localStorage.setItem('token', response.token);
     } 
-   
-       
     }
 
     logout() {

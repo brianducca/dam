@@ -11,9 +11,9 @@ export class HomePage {
   constructor(private _homeServ:HomeService) {}
 
   consultar(){
-  this._homeServ.consulta().subscribe((rta)=>{
-    console.log(rta);
-  });
+    this._homeServ.consulta().then((respuesta)=>{
+      console.log("llego algo : " + respuesta)
+    });
   }
 
 }

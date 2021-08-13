@@ -1,9 +1,8 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import {tap} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private _router:Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes("/login")) {
+    if (req.url.includes("/authenticate")){
       return next.handle(req);
     }
     const token: string = localStorage.getItem('token');
@@ -22,15 +21,21 @@ export class AuthInterceptorService implements HttpInterceptor {
     if (token) {
       request = this.agregarToken(request, token);
       // console.log(request);
-      return next.handle(request).pipe( tap(() => {},
-        (err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status !== 401) {
-           return;
-          }
-          this._router.navigate(['/login']);
+      return next.handle(request)
+      .pipe(catchError((error: HttpErrorResponse) => {
+        let errorMsg = '';
+        if (error.error instanceof ErrorEvent) {
+          console.log('Error del lado Cliente');
+          errorMsg = `Error: ${error.error.message}`;
         }
-      }));
+        else {
+          console.log('Error del lado del Server');
+          errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+        }
+        console.log(errorMsg);
+        return throwError(errorMsg);
+      })
+      );
     }else{
       //si no tengo token, voy al login
       this._router.navigate(['/login']);
