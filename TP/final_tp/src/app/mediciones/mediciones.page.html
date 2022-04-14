@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button> 
+    </ion-buttons>
+    <ion-title>mediciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let medicion of this.listadoMediciones" >
+    <ion-avatar slot="start">
+        <ion-icon size="large" name="thermometer"></ion-icon>
+    </ion-avatar>
+    <ion-label>
+        <h2>{{medicion.fecha|date:"MM/dd/yyyy h:mm:ss a"}} - {{medicion.valor|kpapipe}}</h2>
+        
+    </ion-label>
+</ion-item>
+</ion-content>
