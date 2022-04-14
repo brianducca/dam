@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+
+   
+    mysql-server:
+        image:                   mysql:5.7
+        hostname:                mysql-server
+        environment:
+            MYSQL_ROOT_PASSWORD: userpass
+        volumes:
+            -                    ./db/dumps/start-schema.sql:/docker-entrypoint-initdb.d/1.sql
+            -                    ./db/dumps/initial-data.sql:/docker-entrypoint-initdb.d/2.sql
+            -                    ./db/data:/var/lib/mysql
+        networks:
+            -                    app-fullstack-net
+
+    mysql-admin:
+        image:                   phpmyadmin/phpmyadmin
+        environment: 
+            PMA_HOST:            mysql-server
+            PMA_PORT:            3306
+            MYSQL_ROOT_PASSWORD: userpass
+        networks:
+            -                    app-fullstack-net
+        depends_on:
+            -                    mysql-server
+        ports:
+            -                    "8001:80"
+    node-backend:
+        image:                   abassi/nodejs-server:10.0-dev
+        volumes:
+            -                    ./backend:/home/node/app/src
+                                
+        networks:
+            -                    app-fullstack-net
+        depends_on:
+            -                    mysql-server
+        ports: 
+            -                    "8000:3000"
+        command:                 nodemon /home/node/app/src/index.js
+    
+    ionic-app:
+        image:                   beevelop/ionic:latest
+        volumes:
+            -                    ./final_tp:/home
+                                
+        networks:
+            -                    app-fullstack-net
+        depends_on:
+            -                    node-backend
+        ports: 
+            -                    "8010:8100"
+        command:                 bash -c "cd /home && ionic serve --external" 
+    
+networks:
+    app-fullstack-net:
+        driver:                  bridge
