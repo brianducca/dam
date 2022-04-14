@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: DispositivoPage
-  }
+  },
+
+  {
+    path: 'dispositivo/:id/mediciones',
+    loadChildren: () => import('../mediciones/mediciones.module').then( m => m.MedicionesPageModule)
+  },
 ];
 
 @NgModule({

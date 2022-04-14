@@ -13,8 +13,23 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let dispositivo of this.listadoDispositivo" routerLink="/dispositivo/{{dispositivo.dispositivoId}}" routerDirection="root">
+        <ion-avatar slot="start">
+            <ion-icon size="large" name="thermometer"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+            <h2>Sensor {{dispositivo.dispositivoId}} - {{dispositivo.nombre}}</h2>
+            <h3>
+                <ion-icon name="pin"></ion-icon> {{dispositivo.ubicacion}}</h3>
+        </ion-label>
+    </ion-item>
+     <!-- fab placed to the top end -->
+   
+</ion-list>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "final_tp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
