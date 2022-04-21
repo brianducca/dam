@@ -12,9 +12,23 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dispositivo',
+    path: 'dispositivo/:id',
     loadChildren: () => import('./dispositivo/dispositivo.module').then( m => m.DispositivoPageModule)
   },
+  {
+    path: 'dispositivo/:id/logs',
+    loadChildren: () => import('./logs/logs.module').then( m => m.LogsPageModule)
+  },
+  {
+    path: 'dispositivo/:id/mediciones',
+    loadChildren: () => import('./mediciones/mediciones.module').then( m => m.MedicionesPageModule)
+  },
+  
+  {
+    path: 'agregardispositivo',
+    loadChildren: () => import('./agregardispositivo/agregardispositivo.module').then( m => m.AgregardispositivoPageModule)
+  },
+ 
 ];
 
 @NgModule({

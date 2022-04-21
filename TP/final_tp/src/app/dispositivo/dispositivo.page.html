@@ -8,11 +8,21 @@
 </ion-header>
 
 <ion-content>
-  <div id="highcharts" style="width:100%; height:300px;"></div>
+  <div id="highcharts" [hidden]="!existenMediciones" style="width:100%; height:300px;"></div>
+  <div  [hidden]="existenMediciones">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Estado electrovalvula</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        No existen mediciones registradas, necesitan obtenerse mediciones para mostrar estado
+      </ion-card-content>
+    </ion-card></div>
   
   <ion-button color="primary" expand="block" routerLink="/dispositivo/{{idElectrovalvula}}/logs" routerDirection="forward"> Ver Logs</ion-button> 
   <ion-button color="primary" expand="block" routerLink="/dispositivo/{{idDispositivo}}/mediciones" routerDirection="forward">Mediciones</ion-button> 
   <div *ngIf="showOpenButton;then content else other_content">here is ignored</div>
-  <ng-template #content><ion-button color="primary" expand="block" (click)="openElectrovalvula($event)"> Abrir Valvula</ion-button>  </ng-template>
-  <ng-template #other_content><ion-button color="primary"  expand="block" (click)="closeElectrovalvula($event)"> Cerrar Valvula</ion-button>  </ng-template>
+  <ng-template #content><ion-button [disabled] = "!requiereRiego" color="primary" expand="block" (click)="handleButtonOpenClick()"> Abrir Valvula</ion-button>  </ng-template>
+  <ng-template #other_content><ion-button color="primary"  expand="block" (click)="handleButtonCloseClick()"> Cerrar Valvula</ion-button>  </ng-template>
 </ion-content>

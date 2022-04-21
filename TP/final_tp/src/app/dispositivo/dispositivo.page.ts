@@ -29,6 +29,7 @@ export class DispositivoPage implements OnInit {
   public idElectrovalvula:Number;
   public idDispositivo:string;
   public requiereRiego:Boolean;
+  public existenMediciones:Boolean;
 
   constructor(private router:ActivatedRoute, private dServ:DispositivoService, private mServ:MedicionService, public alertController: AlertController) {
     this.showOpenButton = true;
@@ -44,19 +45,28 @@ export class DispositivoPage implements OnInit {
     this.dispositivo = await this.dServ.getDispositivo(Number.parseInt(this.idDispositivo));
     this.medicion = await this.dServ.getUltimaMedicion(Number.parseInt(this.idDispositivo));
     this.idElectrovalvula = this.dispositivo.electrovalvulaId;
-    if(this.medicion.valor >= 30 && this.medicion.valor <= 60) {
-      this.presentAlert();
-      this.requiereRiego = true;
-      
-    }
-    this.generarChart(10);
-    this.myChart.update({series: [{
-      name: 'kPA',
-      data: [Number.parseInt(this.medicion.valor.toString())],
-      tooltip: {
-          valueSuffix: ' kPA'
+    if(this.medicion == null) {
+      this.existenMediciones = false;
+      console.log("No existen mediciones");
+    } else {
+      this.existenMediciones = true;
+      if(this.medicion.valor >= 30 && this.medicion.valor <= 100) {
+        this.presentAlert();
+        this.requiereRiego = true;
+        
+      } else {
+        this.requiereRiego = false;
       }
-      }]});
+      this.generarChart(10);
+      this.myChart.update({series: [{
+        name: 'kPA',
+        data: [Number.parseInt(this.medicion.valor.toString())],
+        tooltip: {
+            valueSuffix: ' kPA'
+        }
+        }]});
+    }
+   
     
    
   }
@@ -67,12 +77,12 @@ export class DispositivoPage implements OnInit {
     this.loadDispositivo();
   }
 
-  async openElectrovalvula(event) {
+  async openElectrovalvula() {
     await this.dServ.changeStatusElectrovalvula(true, this.dispositivo.electrovalvulaId);
     this.showOpenButton = false;
   }
 
-  async closeElectrovalvula(event) {
+  async closeElectrovalvula() {
     await this.dServ.changeStatusElectrovalvula(false, this.dispositivo.electrovalvulaId);
     let nuevaMedicion = Math.floor(Math.random()* this.medicion.valor);
     await this.mServ.addMedicion(new Medicion(0,moment().format("YYYY-MM-DD hh:mm:ss"),nuevaMedicion,this.dispositivo.dispositivoId))
@@ -172,6 +182,26 @@ export class DispositivoPage implements OnInit {
 
     };
     this.myChart = Highcharts.chart('highcharts', this.chartOptions );
+  }
+
+  async handleButtonOpenClick() {
+    const alert = await this.alertController.create({
+      header: 'Abrir electrovalvula?',
+      message: 'Seguro desea abrir la electrovalvula?',
+      buttons: [{text:'Cancel', handler: () => close}, {text: 'Ok', handler: () =>this.openElectrovalvula()}],
+    });
+
+    await alert.present();
+  }
+
+  async handleButtonCloseClick() {
+    const alert = await this.alertController.create({
+      header: 'Cerrar electrovalvula?',
+      message: 'Seguro desea cerrar la electrovalvula?',
+      buttons: [{text:'Cancel', handler: () => close}, {text: 'Ok', handler: () =>this.closeElectrovalvula()}],
+    });
+
+    await alert.present();
   }
 
 }

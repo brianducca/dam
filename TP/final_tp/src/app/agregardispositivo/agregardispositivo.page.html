@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button> 
+    </ion-buttons>
+    <ion-title>Crear dispositivo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nombre.errors?.required">
+      Nombre es requerido
+    </span>
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nombre.errors?.minlength">
+      Nombre debe tener al menos 5 caracteres
+    </span>
+    <ion-item lines="full">
+      <ion-label position="floating">Ubicacion</ion-label>
+      <ion-input formControlName="ubicacion" type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" color="red" *ngIf="isSubmitted && errorControl.ubicacion.errors?.required">
+      Ubicacion es requerido
+    </span>
+   
+    <ion-item lines="full">
+      <ion-label position="floating">Electrovalvula</ion-label>
+      <ion-input formControlName="electrovalvula" type="text"></ion-input>
+    </ion-item>
+    <span class="error ion-padding" color="red" *ngIf="isSubmitted && errorControl.electrovalvula.errors?.required">
+      Electrovalvula es requerido
+    </span>
+    <span class="error ion-padding" color="red" *ngIf="isSubmitted && errorControl.electrovalvula.errors?.pattern">
+      Electrovalvula solo permite letras
+    </span>
+  
+    <ion-row>
+      <ion-col>
+        <ion-button type="Submit" color="primary" expand="block">Guardar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

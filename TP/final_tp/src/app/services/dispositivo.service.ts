@@ -49,6 +49,25 @@ export class DispositivoService {
     });
   }
 
+  postDispositivo(nombre:string, ubicacion: string, nombreElectrovalvula:string){
+    let url = this.urlApi+"/api/dispositivos";
+    let body = {
+      nombre:nombre,
+      ubicacion:ubicacion,
+      electrovalvula:nombreElectrovalvula
+    };
+    return this._http.post(url, body).toPromise().then(()=>{
+      
+    });
+    }
+
+    deleteDispositivo(id:number) {
+      let url = this.urlApi+`/api/dispositivos/${id}`;
+
+      return this._http.delete(url).toPromise().then(()=>{
+      
+      });
+    }
 
 
 }
