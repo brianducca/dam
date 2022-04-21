@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `DAM`.`Dispositivos` (
   `nombre` VARCHAR(200) NULL,
   `ubicacion` VARCHAR(200) NULL,
   `electrovalvulaId` INT NOT NULL,
+  `deleted` TINYINT NULL,
   PRIMARY KEY (`dispositivoId`, `electrovalvulaId`),
   INDEX `fk_Dispositivos_Electrovalvulas1_idx` (`electrovalvulaId` ASC) ,
   CONSTRAINT `fk_Dispositivos_Electrovalvulas1`
