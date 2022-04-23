@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { Log } from '../model/Log';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Log } from '../model/Log';
 })
 export class LogsService {
 
-  urlApi="http://localhost:8000";
+  urlApi=environment.apiUrl;
 
   constructor(private _http: HttpClient) { }
 

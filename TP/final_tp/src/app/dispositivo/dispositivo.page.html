@@ -22,6 +22,7 @@
   
   <ion-button color="primary" expand="block" routerLink="/dispositivo/{{idElectrovalvula}}/logs" routerDirection="forward"> Ver Logs</ion-button> 
   <ion-button color="primary" expand="block" routerLink="/dispositivo/{{idDispositivo}}/mediciones" routerDirection="forward">Mediciones</ion-button> 
+  <ion-button color="primary" expand="block" (click)="callGenerarMedicion()">Generar medicion</ion-button> 
   <div *ngIf="showOpenButton;then content else other_content">here is ignored</div>
   <ng-template #content><ion-button [disabled] = "!requiereRiego" color="primary" expand="block" (click)="handleButtonOpenClick()"> Abrir Valvula</ion-button>  </ng-template>
   <ng-template #other_content><ion-button color="primary"  expand="block" (click)="handleButtonCloseClick()"> Cerrar Valvula</ion-button>  </ng-template>

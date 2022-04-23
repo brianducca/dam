@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { Medicion } from '../model/Medicion';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Medicion } from '../model/Medicion';
 })
 export class MedicionService {
 
-  urlApi="http://localhost:8000";
+  urlApi=environment.apiUrl;
 
   constructor(private _http: HttpClient) { }
 

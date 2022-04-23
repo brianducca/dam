@@ -1,14 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.prod';
 import { Dispositivo } from '../model/Dispositivo';
 import { Medicion } from '../model/Medicion';
-
+  
 @Injectable({
   providedIn: 'root'
 })
 export class DispositivoService {
 
-  urlApi="http://localhost:8000";
+  urlApi=environment.apiUrl;
   
   constructor(private _http: HttpClient ) {
     

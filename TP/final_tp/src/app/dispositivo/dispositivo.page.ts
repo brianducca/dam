@@ -50,21 +50,9 @@ export class DispositivoPage implements OnInit {
       console.log("No existen mediciones");
     } else {
       this.existenMediciones = true;
-      if(this.medicion.valor >= 30 && this.medicion.valor <= 100) {
-        this.presentAlert();
-        this.requiereRiego = true;
-        
-      } else {
-        this.requiereRiego = false;
-      }
-      this.generarChart(10);
-      this.myChart.update({series: [{
-        name: 'kPA',
-        data: [Number.parseInt(this.medicion.valor.toString())],
-        tooltip: {
-            valueSuffix: ' kPA'
-        }
-        }]});
+      
+     
+      this.updateChart(Number.parseInt(this.medicion.valor.toString()));
     }
    
     
@@ -74,6 +62,7 @@ export class DispositivoPage implements OnInit {
 
   
   async ionViewDidEnter() {
+    this.generarChart(10,'indefinido');
     this.loadDispositivo();
   }
 
@@ -87,22 +76,16 @@ export class DispositivoPage implements OnInit {
     let nuevaMedicion = Math.floor(Math.random()* this.medicion.valor);
     await this.mServ.addMedicion(new Medicion(0,moment().format("YYYY-MM-DD hh:mm:ss"),nuevaMedicion,this.dispositivo.dispositivoId))
     this.showOpenButton = true;
-    this.myChart.update({series: [{
-      name: 'kPA',
-      data: [Number.parseInt(nuevaMedicion.toString())],
-      tooltip: {
-          valueSuffix: ' kPA'
-      }
-      }]});
+    this.updateChart(Number.parseInt(nuevaMedicion.toString()));
   }
 
-  async presentAlert() {
+  async presentAlert(valor:number) {
     
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Alerta',
       subHeader: 'Condicion del suelo',
-      message: `El suelo tiene  ${new KpapipePipe().transform(this.medicion.valor)}, debe abrir electrovalvula` ,
+      message: `El suelo tiene  ${new KpapipePipe().transform(valor)}, debe abrir electrovalvula` ,
       buttons: ['OK']
     });
 
@@ -113,7 +96,7 @@ export class DispositivoPage implements OnInit {
   }
 
 
-  generarChart(valorObtenido:Number) {
+  generarChart(valorObtenido:Number, nombre:string) {
     this.chartOptions={
       chart: {
           type: 'gauge',
@@ -123,7 +106,7 @@ export class DispositivoPage implements OnInit {
           plotShadow: false
         }
         ,title: {
-          text: this.dispositivo.nombre
+          text: nombre
         }
 
         ,credits:{enabled:false}
@@ -204,5 +187,44 @@ export class DispositivoPage implements OnInit {
     await alert.present();
   }
 
+  async callGenerarMedicion() {
+    const alert = await this.alertController.create({
+      header: 'Medir suelo',
+      message: 'Seguro desea generar una nueva medicion?',
+      buttons: [{text:'Cancel', handler: () => close}, {text: 'Ok', handler: () =>this.generarNuevaMedicion()}],
+    });
+
+    await alert.present();
+
+  }
+
+  async generarNuevaMedicion() {
+    let nuevaMedicion = Math.floor(Math.random()* 100);
+    await this.mServ.addMedicion(new Medicion(0,moment().format("YYYY-MM-DD hh:mm:ss"),nuevaMedicion,this.dispositivo.dispositivoId))
+    this.existenMediciones = true;
+    this.updateChart(Number.parseInt(nuevaMedicion.toString()));
+  
+  }
+
+  updateChart(newValue:number) {
+    if(newValue>= 30 && newValue <= 100) {
+      this.presentAlert(newValue);
+      this.requiereRiego = true;
+      
+    } else {
+      this.requiereRiego = false;
+    }
+    this.myChart.update({
+      title:{text:this.dispositivo.nombre},
+      series: [{
+      name: 'kPA',
+      data: [newValue],
+      tooltip: {
+          valueSuffix: ' kPA'
+      }
+      }]});
+  }
+  
+  
 }
 
