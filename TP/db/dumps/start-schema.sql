@@ -23,6 +23,21 @@ CREATE TABLE IF NOT EXISTS `DAM`.`Electrovalvulas` (
   PRIMARY KEY (`electrovalvulaId`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `DAM`.`Dispositivos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `DAM`.`Usuarios` ;
+
+CREATE TABLE IF NOT EXISTS `DAM`.`Usuarios` (
+  `usuarioId` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NULL,
+  `password` VARCHAR(50) NULL,
+ 
+  PRIMARY KEY (`usuarioId`),
+  INDEX `fk_Usuarios_idx` (`usuarioId` ASC) ,
+ 
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `DAM`.`Dispositivos`
@@ -34,14 +49,20 @@ CREATE TABLE IF NOT EXISTS `DAM`.`Dispositivos` (
   `nombre` VARCHAR(200) NULL,
   `ubicacion` VARCHAR(200) NULL,
   `electrovalvulaId` INT NOT NULL,
-  `deleted` TINYINT NULL,
+  `deleted` TINYINT NOT NULL DEFAULT 0,
+  `usuarioId` INT NULL,
   PRIMARY KEY (`dispositivoId`, `electrovalvulaId`),
   INDEX `fk_Dispositivos_Electrovalvulas1_idx` (`electrovalvulaId` ASC) ,
   CONSTRAINT `fk_Dispositivos_Electrovalvulas1`
     FOREIGN KEY (`electrovalvulaId`)
     REFERENCES `DAM`.`Electrovalvulas` (`electrovalvulaId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION),
+  CONSTRAINT `fk_Dispositivos_Usuarios1`
+    FOREIGN KEY (`usuarioId`)
+    REFERENCES `DAM`.`Usuarios` (`usuarioId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION),
 ENGINE = InnoDB;
 
 
