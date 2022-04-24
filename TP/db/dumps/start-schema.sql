@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `DAM`.`Usuarios` (
   `password` VARCHAR(50) NULL,
  
   PRIMARY KEY (`usuarioId`),
-  INDEX `fk_Usuarios_idx` (`usuarioId` ASC) ,
+  INDEX `fk_Usuarios_idx` (`usuarioId` ASC))
  
 ENGINE = InnoDB;
 
@@ -57,12 +57,12 @@ CREATE TABLE IF NOT EXISTS `DAM`.`Dispositivos` (
     FOREIGN KEY (`electrovalvulaId`)
     REFERENCES `DAM`.`Electrovalvulas` (`electrovalvulaId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION),
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_Dispositivos_Usuarios1`
     FOREIGN KEY (`usuarioId`)
     REFERENCES `DAM`.`Usuarios` (`usuarioId`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION),
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
