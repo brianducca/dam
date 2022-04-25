@@ -12,13 +12,14 @@ WORKDIR /app
 
 
 
-
+RUN echo $(npm --version)
 # install application
 COPY     . /app
 RUN      npm install --include=dev
 RUN npm i -g @angular/cli
 RUN npm i -g @ionic/cli
-
+RUN npm uninstall @angular-devkit/build-angular
+RUN npm install --save-dev @angular-devkit/build-angular
 
 
 
