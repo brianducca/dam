@@ -3,17 +3,7 @@ networks:
   app-fullstack-net: 
     driver: bridge
 services: 
-  ionic-app: 
-    build: ./final_tp
-    command: "ionic serve --external"
-    depends_on: 
-      - node-backend
-    networks: 
-      - app-fullstack-net
-    ports: 
-      - "8100:8100"
-    volumes: 
-      - "./final_tp:/app"
+  
   mysql-admin: 
     depends_on: 
       - mysql-server
