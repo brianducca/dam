@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
+
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: '',
@@ -13,20 +16,24 @@ const routes: Routes = [
   },
   {
     path: 'dispositivo/:id',
-    loadChildren: () => import('./dispositivo/dispositivo.module').then( m => m.DispositivoPageModule)
+    loadChildren: () => import('./dispositivo/dispositivo.module').then( m => m.DispositivoPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'dispositivo/:id/logs',
-    loadChildren: () => import('./logs/logs.module').then( m => m.LogsPageModule)
+    loadChildren: () => import('./logs/logs.module').then( m => m.LogsPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'dispositivo/:id/mediciones',
-    loadChildren: () => import('./mediciones/mediciones.module').then( m => m.MedicionesPageModule)
+    loadChildren: () => import('./mediciones/mediciones.module').then( m => m.MedicionesPageModule),
+    canActivate:[AuthGuard]
   },
   
   {
     path: 'agregardispositivo',
-    loadChildren: () => import('./agregardispositivo/agregardispositivo.module').then( m => m.AgregardispositivoPageModule)
+    loadChildren: () => import('./agregardispositivo/agregardispositivo.module').then( m => m.AgregardispositivoPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'login',

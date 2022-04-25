@@ -15,9 +15,10 @@ WORKDIR /app
 
 # install application
 COPY     . /app
-RUN      npm install
-RUN npm install -g @ionic/cli
-RUN npm install -g @angular/cli
+RUN      npm install --include=dev
+RUN npm i -g @angular/cli
+RUN npm i -g @ionic/cli
+
 
 
 
