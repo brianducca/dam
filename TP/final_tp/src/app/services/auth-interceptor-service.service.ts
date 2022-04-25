@@ -62,13 +62,14 @@ export class AuthInterceptorService implements HttpInterceptor {
   }
 
   async showAlert(msg:string) {
-    let alert = this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Alerta',
-      subHeader: 'Error en login, usuario o password incorrecto',
-      message: msg,
+      header: 'Error en login',
+      subHeader: 'Nombre de usuario o password incorrecto',
+      message: 'Nombre de usuario o password incorrecto' ,
       buttons: ['OK']
     });
+
     await alert.present();
   }
 }
