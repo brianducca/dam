@@ -21,6 +21,10 @@ export class LoginPage {
 
     if (form.valid) {
       this._loginServ.login(this.login.username,this.login.password);
+      console.log("Obtuvo token");
+      if(!this._loginServ) {
+        console.log("error");
+      }
     }
   }
 }

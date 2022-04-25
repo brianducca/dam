@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,10 +10,18 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private _router:Router) { }
+  constructor(private _router:Router, private alertCtrl: AlertController) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.includes("/authenticate")){
-      return next.handle(req);
+      return next.handle(req) .pipe(catchError((error: HttpErrorResponse) => {
+        let msg = error.message;
+
+        this.showAlert(msg);
+
+        // Pass the error to the caller of the function
+        return throwError(msg);
+      })
+      );;
     }
     const token: string = localStorage.getItem('token');
     // console.log("TOKEN EN LA REQUEST "+token)
@@ -50,5 +59,16 @@ export class AuthInterceptorService implements HttpInterceptor {
         'Authorization': `Bearer ${token}`
       }
     });
+  }
+
+  async showAlert(msg:string) {
+    let alert = this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Alerta',
+      subHeader: 'Error en login, usuario o password incorrecto',
+      message: msg,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }
