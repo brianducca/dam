@@ -18,32 +18,32 @@
       
 # Clase 03
     Reactive Forms
+    
+# Clase 04
     Comunicación entre componentes
     Ciclo de vida Angular
-
-# Clase 04
     App Híbridas vs Nativas
+    
+# Clase 05
     Ionic
     Ciclo de vida ionic
     Ionic Native
-    
-# Clase 05
     Web Api vs Web Service
     Rest vs SOAP
     Express - Middleware
-    CORS
-    MySql Pool
     
 # Clase 06
-    Interceptors
-    Guard
-    Router
-
-# Clase 07
+    CORS
+    MySql Pool
     Services con HTTP
     Observables
     Promesas
     Async-Await
+    
+# Clase 07
+    Interceptors
+    Guard
+    Router
     
 # Clase 08
     Realización y entrega de TP final
